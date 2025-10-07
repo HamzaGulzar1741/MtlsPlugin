@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.duracell.plugin.MtlsPlugin"
+    version="1.0.0">
+    
+    <name>MtlsPlugin</name>
+    <description>Mutual TLS Client for Provisioning Server</description>
+
+    <js-module name="MtlsPlugin" src="www/MtlsPlugin.js">
+        <clobbers target="cordova.plugins.MtlsPlugin" />
+    </js-module>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="MtlsPlugin">
+                <param name="android-package" value="com.duracell.plugin.MtlsPlugin.MtlsPlugin" />
+            </feature>
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+
+        <source-file src="src/android/MtlsPlugin.java" target-dir="src/com/duracell/plugin/MtlsPlugin" />
+        
+        </platform>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="MtlsPlugin">
+                <param name="ios-package" value="MtlsPlugin" />
+            </feature>
+        </config-file>
+        
+        <header-file src="src/ios/MtlsPlugin.h" />
+        <source-file src="src/ios/MtlsPlugin.m" />
+        
+        <framework src="Security.framework" />
+        <framework src="CFNetwork.framework" />
+        <framework src="CoreFoundation.framework" />
+    </platform>
+</plugin>
